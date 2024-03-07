@@ -1,11 +1,11 @@
-name: Maven Deploy Reusable Workflow
-run-name: GitHub Action Maven Reusable Workflow
+name: Tomcat Reusable Workflow
+run-name: GitHub Action Tomcat Reusable Workflow
 on:
   workflow_dispatch:
   workflow_call:
 
 jobs:
-  Maven-Deploy-Workflow:
+  Tomcat-Workflow:
     runs-on: ubuntu-latest
     steps:
      - uses: actions/download-artifact@v3
@@ -14,6 +14,7 @@ jobs:
      - name: Production Deployment
        run: |
           ls -lart 
+          echo ${{ secrets.DC_HOST }}
      - name: scp ssh pipelines
        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
        env:
@@ -25,5 +26,5 @@ jobs:
          scp: |
           ./*.war => /tmp/
          last_ssh: |
-            sudo cp /tmp/*.war /var/lib/tomcat9/webapps/durgavinayb.war
+            sudo cp /tmp/*.war /var/lib/tomcat9/webapps/Anuj.war
             ls -la
