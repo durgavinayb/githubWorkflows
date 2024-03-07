@@ -30,7 +30,7 @@ jobs:
          user: ${{ secrets.user }}
          pass: ${{ secrets.password }}
          scp: |
-          ./*.war => /tmp/durgavinayb.war
+          ./*.war => /tmp/Anuj.war
          last_ssh: |
-            sudo cp -r /tmp/durgavinayb.war /var/lib/tomcat9/webapps/durgavinayb.war
+            sudo cp -r /tmp/Anuj.war /var/lib/tomcat9/webapps/Anuj.war
             ls -la
