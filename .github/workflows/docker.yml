@@ -16,6 +16,11 @@ jobs:
   Tomcat-Workflow:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/download-artifact@v4
+      with:
+        name: buildArtifact
+    - name: Display structure of downloaded files
+      run: ls -R
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
