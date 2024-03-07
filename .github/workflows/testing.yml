@@ -10,8 +10,8 @@ jobs:
     - name: Checkout tools repo
       uses: actions/checkout@v4
       with:
-        repository: anujdevopslearn/python-testing-101
+        repository: anujdevopslearn/python-testing
         path: test
     - name: Invoke Python script
       run: python -m unittest discover
-      working-directory: test
+      working-directory: test/example-py-unittest/
