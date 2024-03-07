@@ -1,0 +1,30 @@
+name: Docker Reusable Workflow
+run-name: GitHub Action Docker Reusable Workflow
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      image_name:
+        required: true
+        type: string
+    secrets:
+      docker_user:
+        required: true
+      docker_password:
+        required: true
+jobs:
+  Tomcat-Workflow:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+          username: ${{ secrets.docker_user }}
+          password: ${{ secrets.docker_password }}
+    - name: Build and push
+      if: github.ref_name == 'master'
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ secrets.docker_user }}/${{ inputs.image_name }}:latest
